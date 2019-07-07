@@ -1,0 +1,66 @@
+- airblade/vim-gitgutter
+- itchyny/lightline.vim:
+  repo: https://github.com/itchyny/lightline.vim
+  comment: lightline config
+  config:
+  - set noshowmode
+  - set laststatus=2
+  - |
+    function! LightlineReadonly()
+      return &readonly && &filetype !=# 'help' ? 'RO' : ''
+    endfunction
+    function! LightlineFileformat()
+      return winwidth(0) > 70 ? &fileformat : ''
+    endfunction
+    function! LightlineFiletype()
+      return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    endfunction
+    let g:lightline = {
+          \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ],
+          \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+          \ },
+          \ 'component_function': {
+          \   'readonly': 'LightlineReadonly',
+          \   'fileformat': 'LightlineFileformat',
+          \   'filetype': 'LightlineFiletype',
+          \   'gitbranch': 'gitbranch#name'
+          \ },
+          \ }
+- bronson/vim-trailing-whitespace
+- Valloric/YouCompleteMe:
+  config:
+  - let g:ycm_global_ycm_extra_conf='~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
+- rdnetto/YCM-Generator:
+  branch: stable
+- google/vim-maktaba
+- google/vim-codefmt
+- Yggdroot/indentLine:
+  config:
+  - let g:indentLine_char = '┆'
+- google/vim-glaive
+- itchyny/vim-gitbranch
+- scrooloose/nerdtree
+- Xuyuanp/nerdtree-git-plugin
+- mkitt/tabline.vim
+- my custom setting:
+  comment: some custom config
+  config:
+  - |
+    cnoreabbrev W! w!
+    cnoreabbrev Q! q!
+    cnoreabbrev Qall! qall!
+    cnoreabbrev Wq wq
+    cnoreabbrev Wa wa
+    cnoreabbrev wQ wq
+    cnoreabbrev WQ wq
+    cnoreabbrev W w
+    cnoreabbrev Q q
+    cnoreabbrev Qall qall
+  - |
+    " Search mappings: These will make it so that going to the next one in a
+    " search will center on the line it's found in.
+    nnoremap n nzzzv
+    nnoremap N Nzzzv
+    set shell=/bin/bash
+
